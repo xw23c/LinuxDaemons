@@ -20,7 +20,7 @@
 #define EXT_ERR_REQUIRED_ARGS_MISS 1
 #define EXT_ERR_INOTIFY_INIT 2
 #define EXT_ERR_INOTIFY_ADD_WATCH 3
-#define EXT+ERR_INOTIFY_RM_WATCH 4
+#define EXT_ERR_INOTIFY_RM_WATCH 4
 #define EXT_ERR_BASENAME_NULL 5
 #define EXT_ERR_READ_INOTIFY 6
 #define EXT_ERR_LIBNOTIFY_INIT 7
@@ -52,12 +52,12 @@ int main(int argc, char** argv) {
     // Dependencies for libnotify
 
     bool notifyInitStatus;
-    NotifyNotification* NNotification；
+    NotifyNotification* NNotification;
 
 
     // Check arguments
     err_shutdown_handler(argc<2, EXT_ERR_REQUIRED_ARGS_MISS, "Usage: watchman $PATH");
-    printf("Basename: s%\n", _basename);
+    printf("Basename: %s\n", _basename);
     err_shutdown_handler(_basename==NULL, EXT_ERR_BASENAME_NULL, "Err: file path basename null!");
 
     // Init libnotify notification handle
