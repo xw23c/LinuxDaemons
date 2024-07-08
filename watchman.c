@@ -108,6 +108,10 @@ int main(int argc, char** argv) {
                 message = "File modified. \n";
             }
 
+			if (event->mask & IN_MOVE_SELF) {
+				message = "File moved.\n";
+			}
+
             if (message==NULL) {
                 continue;
             }
@@ -117,6 +121,8 @@ int main(int argc, char** argv) {
             NNotification = notify_notification_new(_basename, message, "dialog-information");
             err_shutdown_handler(NNotification == NULL, EXT_ERR_NOTIFY_HANDLER_NULL,
                                  "Err: got null notification handler!");
+            notify_notification_set_urgency(NNotification, NOTIFY_URGENCY_CRITICAL);
+            notify_notification_show(NNotification, NULL);
 
         }
     }
